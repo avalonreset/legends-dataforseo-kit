@@ -1,0 +1,16 @@
+.env
+.env.*
+*.pem
+*.key
+*.log
+*.jsonl
+var/
+dist/
+build/
+*.egg-info/
+__pycache__/
+.pytest_cache/
+.venv/
+.venv-*/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,367 @@
+{
+  "schema": "legends-dataforseo-routes/v1",
+  "version": "0.3.0",
+  "routes": [
+    {
+      "name": "whoami",
+      "aliases": [],
+      "kind": "api",
+      "method": "GET",
+      "path": "/appendix/user_data",
+      "family": "appendix",
+      "charged": false,
+      "summary": "Account information; response may contain private data",
+      "estimate": null
+    },
+    {
+      "name": "status",
+      "aliases": [],
+      "kind": "api",
+      "method": "GET",
+      "path": "/appendix/status",
+      "family": "appendix",
+      "charged": false,
+      "summary": "No-charge DataForSEO API service status",
+      "estimate": null
+    },
+    {
+      "name": "endpoints",
+      "aliases": [],
+      "kind": "api",
+      "method": "GET",
+      "path": "/serp/endpoints",
+      "family": "appendix",
+      "charged": false,
+      "summary": "No-charge current SERP endpoint inventory",
+      "estimate": null
+    },
+    {
+      "name": "locations",
+      "aliases": [
+        "google-locations"
+      ],
+      "kind": "api",
+      "method": "GET",
+      "path": "/serp/google/locations",
+      "family": "serp-locations",
+      "charged": false,
+      "summary": "No-charge Google SERP location directory",
+      "estimate": null
+    },
+    {
+      "name": "serp",
+      "aliases": [
+        "google-serp"
+      ],
+      "kind": "api",
+      "method": "POST",
+      "path": "/serp/google/organic/live/advanced",
+      "family": "serp-google",
+      "charged": true,
+      "summary": "Google organic live advanced",
+      "estimate": {
+        "base_usd": 0.002,
+        "depth_unit": 10,
+        "item_usd": 0,
+        "note": "Baseline estimate only; verify current pricing and request options."
+      }
+    },
+    {
+      "name": "paa",
+      "aliases": [],
+      "kind": "api",
+      "method": "POST",
+      "path": "/serp/google/organic/live/advanced",
+      "family": "serp-google",
+      "charged": true,
+      "summary": "Google SERP envelope containing People Also Ask items when available",
+      "estimate": {
+        "base_usd": 0.002,
+        "depth_unit": 10,
+        "item_usd": 0,
+        "note": "Baseline estimate only; verify current pricing and request options."
+      }
+    },
+    {
+      "name": "maps",
+      "aliases": [
+        "google-maps"
+      ],
+      "kind": "api",
+      "method": "POST",
+      "path": "/serp/google/maps/live/advanced",
+      "family": "serp-maps",
+      "charged": true,
+      "summary": "Google Maps live advanced",
+      "estimate": {
+        "base_usd": 0.002,
+        "depth_unit": 100,
+        "item_usd": 0,
+        "note": "Baseline estimate only; verify current pricing and request options."
+      }
+    },
+    {
+      "name": "bing",
+      "aliases": [
+        "bing-serp"
+      ],
+      "kind": "api",
+      "method": "POST",
+      "path": "/serp/bing/organic/live/advanced",
+      "family": "serp-bing",
+      "charged": true,
+      "summary": "Bing organic live advanced",
+      "estimate": {
+        "base_usd": 0.002,
+        "depth_unit": 10,
+        "item_usd": 0,
+        "note": "Baseline estimate only; verify current pricing and request options."
+      }
+    },
+    {
+      "name": "youtube",
+      "aliases": [],
+      "kind": "api",
+      "method": "POST",
+      "path": "/serp/youtube/organic/live/advanced",
+      "family": "youtube",
+      "charged": true,
+      "summary": "YouTube organic live advanced",
+      "estimate": {
+        "base_usd": 0.002,
+        "depth_unit": 20,
+        "item_usd": 0,
+        "note": "Baseline estimate only; verify current pricing and request options."
+      }
+    },
+    {
+      "name": "volume",
+      "aliases": [
+        "ads-volume"
+      ],
+      "kind": "api",
+      "method": "POST",
+      "path": "/keywords_data/google_ads/search_volume/live",
+      "family": "ads-volume",
+      "charged": true,
+      "summary": "Google Ads search volume for up to 1000 keywords",
+      "estimate": {
+        "base_usd": 0.05,
+        "depth_unit": null,
+        "item_usd": 0,
+        "note": "Baseline estimate only; verify current pricing and request options."
+      }
+    },
+    {
+      "name": "demand",
+      "aliases": [
+        "keyword-overview"
+      ],
+      "kind": "api",
+      "method": "POST",
+      "path": "/dataforseo_labs/google/keyword_overview/live",
+      "family": "labs",
+      "charged": true,
+      "summary": "Keyword demand overview: volume, CPC, competition, intent and monthly history",
+      "estimate": {
+        "base_usd": 0.012,
+        "depth_unit": null,
+        "item_usd": 0.00012,
+        "note": "Baseline estimate only; verify current pricing and request options."
+      }
+    },
+    {
+      "name": "ideas",
+      "aliases": [],
+      "kind": "api",
+      "method": "POST",
+      "path": "/dataforseo_labs/google/keyword_ideas/live",
+      "family": "labs",
+      "charged": true,
+      "summary": "Keyword ideas",
+      "estimate": {
+        "base_usd": 0.012,
+        "depth_unit": null,
+        "item_usd": 0.00012,
+        "note": "Baseline estimate only; verify current pricing and request options."
+      }
+    },
+    {
+      "name": "related",
+      "aliases": [],
+      "kind": "api",
+      "method": "POST",
+      "path": "/dataforseo_labs/google/related_keywords/live",
+      "family": "labs",
+      "charged": true,
+      "summary": "Related keywords",
+      "estimate": {
+        "base_usd": 0.012,
+        "depth_unit": null,
+        "item_usd": 0.00012,
+        "note": "Baseline estimate only; verify current pricing and request options."
+      }
+    },
+    {
+      "name": "intent",
+      "aliases": [],
+      "kind": "api",
+      "method": "POST",
+      "path": "/dataforseo_labs/google/search_intent/live",
+      "family": "labs",
+      "charged": true,
+      "summary": "Search intent classification",
+      "estimate": {
+        "base_usd": 0.012,
+        "depth_unit": null,
+        "item_usd": 0.00012,
+        "note": "Baseline estimate only; verify current pricing and request options."
+      }
+    },
+    {
+      "name": "difficulty",
+      "aliases": [],
+      "kind": "api",
+      "method": "POST",
+      "path": "/dataforseo_labs/google/bulk_keyword_difficulty/live",
+      "family": "labs",
+      "charged": true,
+      "summary": "Bulk keyword difficulty",
+      "estimate": {
+        "base_usd": 0.012,
+        "depth_unit": null,
+        "item_usd": 0.00012,
+        "note": "Baseline estimate only; verify current pricing and request options."
+      }
+    },
+    {
+      "name": "trends",
+      "aliases": [],
+      "kind": "api",
+      "method": "POST",
+      "path": "/keywords_data/google_trends/explore/live",
+      "family": "trends",
+      "charged": true,
+      "summary": "Google Trends graph for up to five keywords",
+      "estimate": {
+        "base_usd": 0.01,
+        "depth_unit": null,
+        "item_usd": 0,
+        "note": "Baseline estimate only; verify current pricing and request options."
+      }
+    },
+    {
+      "name": "business",
+      "aliases": [
+        "business-info",
+        "google-profile"
+      ],
+      "kind": "api",
+      "method": "POST",
+      "path": "/business_data/google/my_business_info/live",
+      "family": "business-info",
+      "charged": true,
+      "summary": "Google Business Profile information",
+      "estimate": {
+        "base_usd": 0.0015,
+        "depth_unit": null,
+        "item_usd": 0,
+        "note": "Baseline estimate only; verify current pricing and request options."
+      }
+    },
+    {
+      "name": "reviews",
+      "aliases": [
+        "google-reviews"
+      ],
+      "kind": "api",
+      "method": "POST",
+      "path": "/business_data/google/reviews/task_post",
+      "family": "reviews",
+      "charged": true,
+      "summary": "Queue Google reviews collection; returns task id",
+      "estimate": {
+        "base_usd": 0.00075,
+        "depth_unit": 10,
+        "item_usd": 0,
+        "note": "Baseline estimate only; verify current pricing and request options."
+      }
+    },
+    {
+      "name": "reviews-get",
+      "aliases": [],
+      "kind": "api",
+      "method": "GET",
+      "path": "/business_data/google/reviews/task_get/{id}",
+      "family": "reviews",
+      "charged": false,
+      "summary": "Collect a completed Google reviews task by id",
+      "estimate": null
+    },
+    {
+      "name": "backlinks",
+      "aliases": [],
+      "kind": "api",
+      "method": "POST",
+      "path": "/backlinks/summary/live",
+      "family": "backlinks-summary",
+      "charged": true,
+      "summary": "Backlinks summary only",
+      "estimate": null
+    },
+    {
+      "name": "onpage",
+      "aliases": [],
+      "kind": "api",
+      "method": "POST",
+      "path": "/on_page/instant_pages",
+      "family": "onpage-instant",
+      "charged": true,
+      "summary": "On-page instant without JavaScript or resource loading",
+      "estimate": {
+        "base_usd": 0.00015,
+        "depth_unit": null,
+        "item_usd": 0,
+        "note": "Baseline estimate only; verify current pricing and request options."
+      }
+    },
+    {
+      "name": "mentions",
+      "aliases": [],
+      "kind": "api",
+      "method": "POST",
+      "path": "/ai_optimization/llm_mentions/search/live",
+      "family": "llm-mentions",
+      "charged": true,
+      "summary": "LLM mentions search; explicit confirmation required",
+      "estimate": {
+        "base_usd": 0.1,
+        "depth_unit": null,
+        "item_usd": 0,
+        "note": "Baseline estimate only; verify current pricing and request options."
+      }
+    },
+    {
+      "name": "maps-task-post",
+      "aliases": [],
+      "kind": "api",
+      "method": "POST",
+      "path": "/serp/google/maps/task_post",
+      "family": "serp-maps",
+      "charged": true,
+      "summary": "Queue Google Maps tasks; normal priority by default",
+      "estimate": null
+    },
+    {
+      "name": "maps-task-get",
+      "aliases": [],
+      "kind": "api",
+      "method": "GET",
+      "path": "/serp/google/maps/task_get/advanced/{id}",
+      "family": "serp-maps",
+      "charged": false,
+      "summary": "Retrieve Maps task status and results by id",
+      "estimate": null
+    }
+  ]
+}
