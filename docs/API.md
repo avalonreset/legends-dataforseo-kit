@@ -1,4 +1,4 @@
-# Python contract — 0.3.x
+# Python contract — 0.4.x (compatible with 0.3.x requests)
 
 Public import: `legends_dataforseo`. Package: `legends-dataforseo-kit`.
 `API_ROOT = "https://api.dataforseo.com/v3"`.
@@ -27,6 +27,9 @@ accepts exactly one task; a SERP queue POST accepts at most 100. Use raw
 `path` is relative to v3, optionally beginning `/v3/`. Absolute URLs, query
 strings, encoded path traversal, and redirects are rejected. No alternate host
 option exists. TLS verification remains enabled.
+An optional terminal `.ai` suffix is accepted explicitly. It is never added
+automatically. Provider AI responses can differ from standard task envelopes and
+omit cost; see [response modes](WORKFLOWS.md#optional-provider-ai-responses).
 
 `confirm=True` is a noninteractive paid/raw opt-in. It is mandatory for POST
 and unclassified GET requests. Registered free GET and task retrieval GET need
@@ -49,6 +52,8 @@ other statuses so the caller can distinguish pending, empty, and failed tasks.
 `ApiError` indicates an HTTP, network, decoding, or top-level envelope failure.
 It has `.response` (decoded object or None) and `.http_status` (integer or None).
 Exception messages do not echo provider text, query bodies, or credentials.
+`request_may_have_completed` is true after an ambiguous POST transport/protocol
+failure. Never treat a timeout as evidence that a paid submission was rejected.
 Treat `.response` as private data. `CredentialError` means missing/incomplete
 credentials; `RouteError` is invalid input; `CostLimitError(ApiError)` is a
 preflight refusal. There are no automatic retries, account fallbacks, queue
@@ -84,6 +89,44 @@ Offline helpers: `load_routes()`, `route_for(operation)`,
 `write_json(Path, payload)` explicitly saves caller-selected data.
 
 ## Compatibility
+
+0.4.0 adds optional helpers without changing the 0.3.x request signatures or
+standard response format. Existing GeoGrid and GitHub callers need no changes.
+
+```python
+wait_task(path, *, max_attempts=5, interval=5, timeout=90, max_elapsed=300,
+          credentials=None, consumer="python", log_cost=False) -> dict
+response_summary(response) -> dict
+response_view(response, *, summary=False, select=None, limit=None,
+              output_file=None)
+docs_index(section=None, **options) -> dict
+docs_sections(**options) -> dict
+docs_search(query, *, limit=20, section=None, **options) -> dict
+docs_read(path, **options) -> dict
+```
+
+`wait_task` is a separate opt-in helper, never part of `api_request`. It performs
+only supported saved-task GETs. Its report preserves the last original envelope
+under `response`, with `state`, `stop_reason`, `attempts`, `elapsed_seconds`,
+`reported_cost_usd`, `reported_cost_complete`, and `cost_scope`. Reported cost is
+from the last response; retrieval may repeat the original submission cost and
+must not be added as another charge. Only pending statuses
+20100/40601/40602 cause another GET. Errors, unknown statuses, empty results,
+attempt limits, and elapsed bounds stop it; transport exceptions propagate.
+See [queue workflow and precise bounds](WORKFLOWS.md).
+
+`response_view` returns a separate view and never mutates the input. Dotted
+selection uses numeric indexes (for example `tasks.0.result.0.items`). Summary
+task metadata remains complete even when displayed result lists are limited.
+`output_file` labels an already saved file; the Python view helper does not write
+it. A missing reported cost is flagged, not labelled free. Legacy `total_cost`
+sums present costs and treats missing ones as zero; do not use it to claim a
+complete bill when responses omit cost or repeat the same task's cost. The
+optional cost ledger also records provider reports, not incremental charges.
+
+Documentation options: `cache_dir=None`, `offline=False`, `refresh=False`,
+`ttl=86400`, `timeout=20`. These helpers never load API credentials. Failures raise
+`DocumentationError`. [Discovery and caching](DISCOVERY.md).
 
 0.3.0 is the first public release, following private local prototypes. It keeps
 the positional `api_request(path, payload)` transport and timeout/consumer/confirm

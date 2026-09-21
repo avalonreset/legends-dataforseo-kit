@@ -8,6 +8,7 @@ import math
 import os
 import re
 import warnings
+from http.client import HTTPException
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -26,10 +27,11 @@ class ApiError(RuntimeError):
     """Transport/envelope failure; task statuses remain caller-owned."""
 
     def __init__(self, message: str, *, response: dict[str, Any] | None = None,
-                 http_status: int | None = None) -> None:
+                 http_status: int | None = None, request_may_have_completed: bool = False) -> None:
         super().__init__(message)
         self.response = response
         self.http_status = http_status
+        self.request_may_have_completed = request_may_have_completed
 
 
 class CostLimitError(ApiError):
@@ -122,7 +124,7 @@ def estimate_cost(operation: str, *, tasks: int = 1, depth: int = 0,
 
 def normalize_path(path: str) -> str:
     # Never accept a URL, query string, encoded traversal, or authority override.
-    if not isinstance(path, str) or not re.fullmatch(r"/?[A-Za-z0-9_-]+(?:/[A-Za-z0-9_-]+)*", path):
+    if not isinstance(path, str) or not re.fullmatch(r"/?[A-Za-z0-9_-]+(?:/[A-Za-z0-9_-]+)*(?:\.ai)?", path):
         raise RouteError("Use an API v3 relative endpoint path without URL, query, or traversal.")
     normalized = "/" + path.lstrip("/")
     if normalized.startswith("/v3/"):
@@ -131,6 +133,7 @@ def normalize_path(path: str) -> str:
 
 
 def _known_free_get(path: str) -> bool:
+    path = path.removesuffix(".ai")
     if re.fullmatch(r"/[a-z0-9_/-]+/task_get/(?:advanced/|regular/|html/)?[A-Za-z0-9_-]+", path):
         return True
     return any(route["method"] == "GET" and not route["charged"] and
@@ -193,6 +196,7 @@ def api_request(
     provider billing. Caller owns aggregate budget, task status, and polling.
     """
     normalized = normalize_path(path)
+    standard_path = normalized.removesuffix(".ai")
     if payload is not None and body is not None:
         raise RouteError("Pass payload or body, not both.")
     payload = body if body is not None else payload
@@ -208,7 +212,7 @@ def api_request(
         raise RouteError("POST requires a nonempty JSON task array (list of objects).")
     if verb == "POST" and normalized.startswith("/serp/") and "/live/" in normalized and len(payload) != 1:
         raise RouteError("Live SERP requests accept one task per call.")
-    if verb == "POST" and normalized.startswith("/serp/") and normalized.endswith("/task_post") and len(payload) > 100:
+    if verb == "POST" and standard_path.startswith("/serp/") and standard_path.endswith("/task_post") and len(payload) > 100:
         raise RouteError("SERP queue requests accept at most 100 tasks per call.")
     timeout = _money(timeout, "timeout")
     if timeout == 0:
@@ -229,37 +233,45 @@ def api_request(
     except (TypeError, ValueError):
         raise RouteError("Task body must contain JSON-compatible finite values.") from None
     auth = credentials if credentials is not None else load_credentials()
+    from . import __version__
     authorization = base64.b64encode(f"{auth.login}:{auth.password}".encode("utf-8")).decode("ascii")
     request = Request(API_ROOT + normalized, data=encoded, method=verb,
                       headers={"Authorization": "Basic " + authorization,
                                "Content-Type": "application/json",
-                               "User-Agent": "legends-dataforseo-kit/0.3.0"})
+                               "User-Agent": "legends-dataforseo-kit/" + __version__})
     try:
         with _open(request, timeout) as response:
             result = json.loads(response.read().decode("utf-8"))
     except HTTPError as exc:
         try:
             rejected = json.loads(exc.read().decode("utf-8"))
-        except (ValueError, UnicodeError, OSError):
+        except (ValueError, UnicodeError, OSError, HTTPException):
             rejected = None
         finally:
             exc.close()
         raise ApiError(f"DataForSEO returned HTTP {exc.code}; request was not retried.",
                        response=rejected if isinstance(rejected, dict) else None,
-                       http_status=exc.code) from None
-    except (URLError, OSError, TimeoutError):
-        raise ApiError("DataForSEO transport failed; request was not retried. Check task state before resubmission.") from None
+                       http_status=exc.code, request_may_have_completed=verb == "POST") from None
+    except (URLError, OSError, TimeoutError, HTTPException):
+        raise ApiError("DataForSEO transport failed; request was not retried. Check task state before resubmission.",
+                       request_may_have_completed=verb == "POST") from None
     except (ValueError, UnicodeError):
-        raise ApiError("DataForSEO returned invalid JSON; request was not retried.") from None
+        raise ApiError("DataForSEO returned invalid JSON; request was not retried.",
+                       request_may_have_completed=verb == "POST") from None
     if not isinstance(result, dict):
-        raise ApiError("DataForSEO returned a non-object JSON response.")
+        raise ApiError("DataForSEO returned a non-object JSON response.",
+                       request_may_have_completed=verb == "POST")
     if log_cost:
         try:
             _append_ledger(normalized, result, consumer)
         except (OSError, ValueError, TypeError):
             # A local disk failure must not hide a paid response or suggest retry.
-            warnings.warn("Cost ledger write failed; preserve the returned response and do not repeat the request.",
-                          RuntimeWarning, stacklevel=2)
+            try:
+                warnings.warn("Cost ledger write failed; preserve the returned response and do not repeat the request.",
+                              RuntimeWarning, stacklevel=2)
+            except Warning:
+                # Even -W error must not discard the response to a completed call.
+                pass
     if result.get("status_code") != 20000:
         raise ApiError("DataForSEO rejected the response envelope; inspect ApiError.response.", response=result)
     return result

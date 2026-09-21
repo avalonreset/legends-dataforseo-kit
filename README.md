@@ -10,6 +10,8 @@
 **Search results, Google Maps rankings, and keyword research from Python or your terminal.**
 legends-dataforseo-kit connects scripts, applications, and coding agents to
 DataForSEO API v3 with offline request previews and explicit paid execution.
+Find official endpoint docs, save complete responses, inspect focused results,
+and resume queued tasks without submitting them again.
 
 Python 3.10+ · Windows, Linux, macOS · No runtime dependencies · MIT licensed
 
@@ -25,6 +27,9 @@ Python 3.10+ · Windows, Linux, macOS · No runtime dependencies · MIT licensed
 | Keyword research | `demand()` / `legends-dataforseo demand` | DataForSEO Labs keyword overview for a keyword list |
 | Custom integrations | `api_request()` / `legends-dataforseo call` | GET/POST access to documented v3 endpoints |
 | Request planning | `routes`, `route`, `estimate`, command previews | Local discovery and baseline estimates without credentials |
+| Endpoint discovery | `docs search`, `docs read` | Official documentation with a local offline cache |
+| Focused results | `--output`, `view`, `--select`, `--limit` | Complete saved JSON with concise, labelled display views |
+| Saved task retrieval | `wait` / `wait_task()` | Opt-in GET polling with attempt and elapsed bounds |
 
 The transport preserves task IDs and original pending, empty, and failed task
 statuses. Your application decides how to interpret results and when to poll.
@@ -33,7 +38,7 @@ No MCP server or particular agent runtime is required.
 ## Install
 
 ```sh
-python -m pip install "https://github.com/avalonreset/legends-dataforseo-kit/releases/download/v0.3.1/legends_dataforseo_kit-0.3.1-py3-none-any.whl"
+python -m pip install "https://github.com/avalonreset/legends-dataforseo-kit/releases/download/v0.4.0/legends_dataforseo_kit-0.4.0-py3-none-any.whl"
 legends-dataforseo --version
 legends-dataforseo doctor
 ```
@@ -83,6 +88,33 @@ The [first live request guide](docs/FIRST-USE.md) takes you from credential setu
 to an explicitly approved request and result inspection. The
 [offline example](examples/offline.py) demonstrates queue and empty-result
 handling with synthetic data.
+
+## Discover, save, and reuse
+
+```sh
+legends-dataforseo docs search "google maps task_post" --limit 3
+legends-dataforseo docs read serp/google/maps/task_post
+```
+
+Docs downloads need internet, but no credentials or provider credits. Add
+`--offline` to read the cached copy. Documentation is reference material; agents
+should review it before preparing a request.
+
+Add `--output results.json` to an approved request to save the full response and
+print a short summary. Then inspect it as often as needed without another call:
+
+```sh
+legends-dataforseo view results.json --select tasks.0.result.0.items --limit 3
+legends-dataforseo view results.json --summary
+```
+
+Existing output files are refused before HTTP. All task IDs and statuses remain
+in summaries; displayed lists are labelled when shortened. The Python transport
+still returns the untouched provider response. For saved queue IDs, `wait`
+offers bounded GET retrieval with no paid resubmission.
+
+[Complete workflow](docs/WORKFLOWS.md) · [Documentation discovery](docs/DISCOVERY.md) ·
+[Verification evidence](docs/VERIFICATION.md) · [Official tooling comparison](docs/UPSTREAM.md)
 
 ## Configure credentials
 
@@ -135,8 +167,9 @@ prompt is repeated after these explicit options. The ceiling compares your
 estimate before HTTP; it cannot enforce provider billing. Review
 [current pricing](https://dataforseo.com/pricing) and reconcile `response.cost`.
 
-Requests are never retried or switched between accounts. Responses remain in
-memory unless the caller saves them. Optional `log_cost=True` writes only cost
+Paid submissions are never retried or switched between accounts. The transport
+makes one request; optional `wait_task` polls only supported saved-task GETs.
+Responses remain in memory unless the caller saves them. Optional `log_cost=True` writes only cost
 metadata to a user state directory. Provider responses can contain private
 queries or account information; do not publish them.
 

@@ -21,6 +21,10 @@ Named request commands preview by default. The registry includes endpoint
 descriptions beyond the three named helpers; discovery is not a promise that
 every route has its own command or has been live-tested.
 
+`docs search`, `docs index`, `docs sections`, and `docs read` discover official
+documentation without credentials or charges. They use the network unless a
+fresh cache exists or `--offline` is specified. [Discovery guide](DISCOVERY.md).
+
 ## Generic endpoints and queues
 
 Preview the included synthetic task file from a source checkout:
@@ -56,6 +60,16 @@ status; polling and retry decisions belong to the caller.
 | `--location-code` | SERP/demand location code; default `2840`. |
 | `--location-coordinate` | Required Maps coordinate and zoom value. |
 | `--depth` | SERP/Maps result depth; defaults 10/100 respectively. |
+| `--output` | Save full JSON to a new file reserved before HTTP; print a summary. |
+| `--summary` | Display IDs, statuses and costs without result bodies. |
+| `--select` | Select a dotted field; repeat for multiple fields. |
+| `--limit` | Limit lists in a labelled display view, preserving full saved JSON. |
+
+`view FILE` applies the same output options to saved JSON with no network.
+`wait PATH` previews supported saved-task retrieval; add `--execute` for bounded
+GET polling. Bounds: `--attempts`, `--interval`, `--timeout`, `--max-elapsed`.
+Returned pending/error task statuses remain visible; exit 0 does not mean a
+task is complete. [Save and resume examples](WORKFLOWS.md).
 
 Each subcommand's `--help` lists the options it accepts. Baseline estimates can
 become outdated. Standard queue pricing needs a separately reviewed estimate.

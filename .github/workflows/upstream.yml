@@ -1,0 +1,29 @@
+name: upstream baseline
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 9 * * 1'
+permissions:
+  contents: read
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python scripts/check_upstream.py > upstream.json
+      - name: Report upstream changes for review
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          report = json.loads(Path('upstream.json').read_text())
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as stream:
+              stream.write('Official DataForSEO tooling baseline (no dependencies changed)\n\n')
+              stream.write('```json\n' + json.dumps(report, indent=2) + '\n```\n')
+          if report['changed']:
+              raise SystemExit('Official tooling changed; review docs/UPSTREAM.md before updating the baseline.')
+          PY

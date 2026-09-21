@@ -1,5 +1,5 @@
 import pytest
-from legends_dataforseo import client
+from legends_dataforseo import client, documentation
 
 
 @pytest.fixture(autouse=True)
@@ -8,3 +8,4 @@ def isolate_credentials_and_network(monkeypatch):
         monkeypatch.delenv(name, raising=False)
     monkeypatch.setattr(client, "_windows_user_environment", lambda _: None)
     monkeypatch.setattr(client, "_open", lambda *_: pytest.fail("Unexpected network request"))
+    monkeypatch.setattr(documentation, "_open", lambda *_: pytest.fail("Unexpected documentation network request"))

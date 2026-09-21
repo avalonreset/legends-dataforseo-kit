@@ -18,4 +18,9 @@ with tempfile.TemporaryDirectory() as directory:
     subprocess.run([str(python), "-I", "-c", code], cwd=target, check=True)
     subprocess.run([str(python), "-I", "-m", "legends_dataforseo", "routes"], cwd=target, check=True, stdout=subprocess.DEVNULL)
     subprocess.run([str(python), "-I", "-m", "legends_dataforseo", "serp", "example"], cwd=target, check=True, stdout=subprocess.DEVNULL)
+    payload = target / "synthetic.json"
+    payload.write_text('{"status_code":20000,"cost":0,"tasks":[{"id":"synthetic","status_code":40601}]}', encoding="utf-8")
+    subprocess.run([str(python), "-I", "-m", "legends_dataforseo", "view", str(payload), "--summary"], cwd=target, check=True, stdout=subprocess.DEVNULL)
+    subprocess.run([str(python), "-I", "-m", "legends_dataforseo", "wait", "/serp/google/maps/task_get/advanced/synthetic"], cwd=target, check=True, stdout=subprocess.DEVNULL)
+    subprocess.run([str(python), "-I", "-c", "from legends_dataforseo import docs_search, docs_read, wait_task, response_view; assert response_view({'id':'synthetic','status_code':20000}, summary=True)['summary']['id']=='synthetic'"], cwd=target, check=True)
 print("clean wheel smoke PASS")
