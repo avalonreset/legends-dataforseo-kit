@@ -1,4 +1,11 @@
-# legends-dataforseo-kit
+<a name="banner"></a>
+<a name="legends-dataforseo-kit"></a>
+
+# ![legends-dataforseo-kit](assets/banner.webp)
+
+[![release](https://img.shields.io/github/v/release/avalonreset/legends-dataforseo-kit?label=release&sort=date&style=flat-square&labelColor=000000&color=ff0000)](https://github.com/avalonreset/legends-dataforseo-kit/releases/latest)
+[![checks](https://img.shields.io/github/actions/workflow/status/avalonreset/legends-dataforseo-kit/ci.yml?branch=main&label=checks&style=flat-square&labelColor=000000)](https://github.com/avalonreset/legends-dataforseo-kit/actions/workflows/ci.yml)
+[![license](https://img.shields.io/github/license/avalonreset/legends-dataforseo-kit?label=license&style=flat-square&labelColor=000000&color=666666)](LICENSE)
 
 An early open-source Python package and CLI for DataForSEO API v3. Use it from
 scripts, applications, or any coding agent. No MCP server or agent-specific

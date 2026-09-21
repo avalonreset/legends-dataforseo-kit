@@ -1,0 +1,40 @@
+{
+  "template": "legends-social-v1",
+  "title": "legends-dataforseo-kit",
+  "subtitle": "dataforseo api access for scripts and agents, without an mcp server",
+  "size": [
+    1280,
+    640
+  ],
+  "title_px": 64,
+  "subtitle_px": 36,
+  "safe_margin_px": 80,
+  "lines": [
+    "dataforseo api access for scripts",
+    "and agents, without an mcp server"
+  ],
+  "text_bounds": [
+    [
+      80,
+      176,
+      960,
+      239
+    ],
+    [
+      80,
+      324,
+      806,
+      360
+    ],
+    [
+      80,
+      372,
+      806,
+      410
+    ]
+  ],
+  "font_sha256": "3769f0f76477a7d9e2e6cb40422dedacb56c9ab1a6f7beee89b2b9ba6b8091ee",
+  "image_sha256": "edc83355cc781ea3d8a951a1724f217d7c07fb03acb8e0e089ef7a799607766c",
+  "bytes": 23807,
+  "upload_status": "not_attempted"
+}
