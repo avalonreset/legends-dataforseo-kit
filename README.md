@@ -7,44 +7,82 @@
 [![checks](https://img.shields.io/github/actions/workflow/status/avalonreset/legends-dataforseo-kit/ci.yml?branch=main&label=checks&style=flat-square&labelColor=000000)](https://github.com/avalonreset/legends-dataforseo-kit/actions/workflows/ci.yml)
 [![license](https://img.shields.io/github/license/avalonreset/legends-dataforseo-kit?label=license&style=flat-square&labelColor=000000&color=666666)](LICENSE)
 
-An early open-source Python package and CLI for DataForSEO API v3. Use it from
-scripts, applications, or any coding agent. No MCP server or agent-specific
-runtime is required. Python 3.10+; Windows, Linux, and macOS; no runtime dependencies.
+**Search results, Google Maps rankings, and keyword research from Python or your terminal.**
+legends-dataforseo-kit connects scripts, applications, and coding agents to
+DataForSEO API v3 with offline request previews and explicit paid execution.
 
-Supports Google SERP, Maps live and queued tasks, keyword demand, and documented
-v3 endpoints. Returns provider JSON without discarding queued, empty, or failed
-task statuses. Includes offline discovery, estimates, and examples.
+Python 3.10+ · Windows, Linux, macOS · No runtime dependencies · MIT licensed
+
+[Quick start](#quick-start) · [Python API](docs/API.md) · [CLI guide](docs/CLI.md) ·
+[Agent setup](skills/legends-dataforseo-kit/SKILL.md) · [Releases](https://github.com/avalonreset/legends-dataforseo-kit/releases)
+
+## What you can build
+
+| Workflow | Included interface | What you get |
+| --- | --- | --- |
+| SERP research | `serp()` / `legends-dataforseo serp` | Google organic results in the provider's JSON envelope |
+| Local ranking scans | `maps()` and queue `api_request()` calls | Maps live results, standard task submission, and saved-task retrieval |
+| Keyword research | `demand()` / `legends-dataforseo demand` | DataForSEO Labs keyword overview for a keyword list |
+| Custom integrations | `api_request()` / `legends-dataforseo call` | GET/POST access to documented v3 endpoints |
+| Request planning | `routes`, `route`, `estimate`, command previews | Local discovery and baseline estimates without credentials |
+
+The transport preserves task IDs and original pending, empty, and failed task
+statuses. Your application decides how to interpret results and when to poll.
+No MCP server or particular agent runtime is required.
 
 ## Install
 
 ```sh
-python -m pip install "git+https://github.com/avalonreset/legends-dataforseo-kit.git@v0.3.0"
+python -m pip install "https://github.com/avalonreset/legends-dataforseo-kit/releases/download/v0.3.1/legends_dataforseo_kit-0.3.1-py3-none-any.whl"
 legends-dataforseo --version
 legends-dataforseo doctor
 ```
 
-The Git install requires Git. A wheel is available on the
-[v0.3.0 release](https://github.com/avalonreset/legends-dataforseo-kit/releases/tag/v0.3.0):
+Use a virtual environment for a project install. If the executable is not on your
+PATH, use `python -m legends_dataforseo` in its place. `doctor` checks the install
+and credential presence locally; missing credentials do not block offline use.
+
+The wheel requires no Git installation. [Install options](docs/INSTALL.md) cover
+Windows and POSIX environments, source ZIPs, immutable dependency pins, upgrades,
+and checksum verification. Releases are distributed through GitHub; the bare
+package name is not a documented PyPI install route.
+
+## Quick start
+
+Preview a Google search request:
 
 ```sh
-python -m pip install "https://github.com/avalonreset/legends-dataforseo-kit/releases/download/v0.3.0/legends_dataforseo_kit-0.3.0-py3-none-any.whl"
+legends-dataforseo serp "technical SEO" --location-code 2840
 ```
 
-There is no PyPI publication for this release. Dependency managers can pin the
-full commit listed in the release for reproducible source installs.
+```json
+{
+  "preview": true,
+  "path": "/serp/google/organic/live/advanced",
+  "method": "POST",
+  "body": [{"language_code": "en", "keyword": "technical SEO", "depth": 10, "location_code": 2840}],
+  "estimated_cost_usd": null,
+  "max_cost_usd": null
+}
+```
 
-## Start offline
+This is real command output, formatted compactly. No request was sent. Explore
+the registry, estimate a live Maps workload, or preview keyword research:
 
 ```sh
 legends-dataforseo routes
 legends-dataforseo estimate maps --tasks 9 --depth 100
-legends-dataforseo serp "technical SEO" --location-code 2840
 legends-dataforseo demand "technical SEO" "local SEO"
 ```
 
 Named commands preview by default. These commands make no network requests and
 need no credentials. Baseline estimates are advisory and can become outdated.
 Queue pricing requires a separately reviewed estimate.
+
+The [first live request guide](docs/FIRST-USE.md) takes you from credential setup
+to an explicitly approved request and result inspection. The
+[offline example](examples/offline.py) demonstrates queue and empty-result
+handling with synthetic data.
 
 ## Configure credentials
 
@@ -55,6 +93,10 @@ credential file, or prompts. Do not put credentials in source or command argumen
 
 `legends-dataforseo doctor --live` verifies authentication with a no-charge
 request and prints only status, cost, and credential presence.
+
+See [credential setup and troubleshooting](docs/INSTALL.md#credentials). A
+DataForSEO account is needed for provider requests; the open-source license does
+not include provider credits.
 
 ## Python API
 
@@ -111,7 +153,25 @@ python -m twine check dist/*
 CI tests Linux, Windows, and macOS without credentials or paid calls. Read
 [AGENTS.md](AGENTS.md) or [the portable skill](skills/legends-dataforseo-kit/SKILL.md)
 for agent-assisted install and operation. Consumer integration recipes for
-legends-geogrid and legends-github are in [docs/INTEGRATIONS.md](docs/INTEGRATIONS.md).
+[legends-geogrid](https://github.com/avalonreset/legends-geogrid) and
+[legends-github](https://github.com/avalonreset/legends-github) are in
+[docs/INTEGRATIONS.md](docs/INTEGRATIONS.md).
+
+For an agent-assisted install, ask your agent to read this repository's
+[AGENTS.md](AGENTS.md), install the wheel into your project's environment, run the
+offline doctor, and preview your intended request. Give it a budget before paid
+execution. The portable instruction files work with file-and-command-capable
+agents; no separate model subscription is required by the kit.
+
+## Support and contributions
+
+[Report a bug or request a feature](https://github.com/avalonreset/legends-dataforseo-kit/issues/new/choose).
+Include the version, a minimal example, and sanitized status codes.
+[CONTRIBUTING.md](CONTRIBUTING.md) explains local checks and the transport rules
+that integrations rely on. For credential leaks or vulnerabilities, use
+[private security reporting](SECURITY.md).
+
+## License
 
 MIT licensed. [Provenance](docs/PROVENANCE.md). Independent project; not an
 official DataForSEO SDK. The license covers this code, not the provider service,

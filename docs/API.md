@@ -1,4 +1,4 @@
-# Python contract — 0.3.0
+# Python contract — 0.3.x
 
 Public import: `legends_dataforseo`. Package: `legends-dataforseo-kit`.
 `API_ROOT = "https://api.dataforseo.com/v3"`.

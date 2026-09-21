@@ -1,0 +1,36 @@
+name: Bug report
+description: Report an installation, CLI, or transport problem.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: "Use synthetic or sanitized input. Never include credentials, Authorization headers, account responses, or customer queries. Report vulnerabilities through SECURITY.md."
+  - type: input
+    id: version
+    attributes:
+      label: Package and Python versions
+      description: "Output of legends-dataforseo --version and python --version."
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Operating system and installation method
+      placeholder: "Windows / Linux / macOS; release wheel, source ZIP, or checkout"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: "Include a command or short script with synthetic input."
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+      description: "Include sanitized error messages and task status codes, if relevant."
+    validations:
+      required: true

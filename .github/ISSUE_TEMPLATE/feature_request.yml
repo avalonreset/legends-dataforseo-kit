@@ -1,0 +1,21 @@
+name: Feature request
+description: Describe a workflow the kit could support better.
+title: "[Feature]: "
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: What are you trying to do?
+      description: "Explain the result you need and what currently gets in the way."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed interface or behavior
+      description: "For a new endpoint, include its official DataForSEO documentation link."
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Existing workarounds
+      description: "Can the generic api_request transport already handle part of this?"
