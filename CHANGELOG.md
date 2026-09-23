@@ -1,6 +1,18 @@
 # Changelog
 
-## 0.4.0 — 2026-09-21
+## 0.5.0 - 2026-09-23
+
+- Ship the offline research-evidence module required by Legends Obsidian intake.
+- Export immutable raw responses with workspace, request settings, source time,
+  task statuses, reported costs and content identity.
+- Verify package integrity; assess reuse against workspace, settings and freshness.
+- Preserve pending, empty and failed responses without treating them as findings.
+- Test the handoff from the installed wheel, without credentials or paid calls.
+
+The Python transport contract is unchanged. Vault ingestion remains an explicit
+Legends Obsidian transaction, not an automatic side effect of export.
+
+## 0.4.0 - 2026-09-21
 
 - Official documentation discovery, endpoint reading, search, and an offline cache.
 - Save full responses with `--output`; inspect local JSON with summary, selection,
@@ -15,7 +27,7 @@
 The existing `api_request` signatures and standard task status behavior remain
 compatible with 0.3.x. No provider package or runtime dependency was added.
 
-## 0.3.1 — 2026-09-21
+## 0.3.1 - 2026-09-21
 
 - Legends banner, live badges, and matching social-preview artwork.
 - Wheel-first quick start with verified output; installation, CLI, and first-request guides.
@@ -26,7 +38,7 @@ compatible with 0.3.x. No provider package or runtime dependency was added.
 The Python request signatures and transport behavior are unchanged from 0.3.0.
 Existing immutable dependency pins continue to work.
 
-## 0.3.0 — 2026-09-20
+## 0.3.0 - 2026-09-20
 
 Initial public release.
 

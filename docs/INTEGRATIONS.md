@@ -1,5 +1,9 @@
 # Consumer integration
 
+For optional offline research memory and Legends Obsidian intake, see
+[Research memory handoff](RESEARCH-MEMORY.md). The local candidate preserves
+standalone operation; it does not change the transport or consumer pins.
+
 Install into the consumer's virtual environment using the release wheel or
 an immutable Git commit, then import `legends_dataforseo`. Do not vendor a second
 credential loader or HTTP implementation. Offline rendering, estimates, and

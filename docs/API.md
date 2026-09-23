@@ -1,4 +1,4 @@
-# Python contract — 0.4.x (compatible with 0.3.x requests)
+# Python contract - 0.5.x (compatible with 0.3.x and 0.4.x requests)
 
 Public import: `legends_dataforseo`. Package: `legends-dataforseo-kit`.
 `API_ROOT = "https://api.dataforseo.com/v3"`.
@@ -134,3 +134,10 @@ keywords. Public defaults are single-account, all paid calls confirmed, logging
 off, and task statuses caller-owned. Private account failover, workstation
 installers, and PowerShell-specific wrappers are not part of the public API.
 Pin a release or full commit. Breaking changes will be documented and versioned.
+
+## Research evidence (0.5.0)
+
+`legends_dataforseo.evidence` provides offline `export`, `verify`, and
+`assess_reuse` helpers. The module CLI supports `export` and `verify`.
+See [research memory](RESEARCH-MEMORY.md) for the complete handoff contract.
+No provider calls, implicit vault writes, or request API changes are introduced.

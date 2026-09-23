@@ -39,3 +39,10 @@ statuses. A pending report means resume retrieval later, never resubmit.
 Keep standard API paths for applications that rely on raw task envelopes and
 costs. Explicit `.ai` paths may return a different schema and omit billing data.
 See ../../docs/WORKFLOWS.md for complete examples and failure handling.
+
+For persistent research memory, read ../../docs/RESEARCH-MEMORY.md. Export only
+explicitly selected saved evidence with recorded scope and time. Legends
+Obsidian is an optional consumer, not a required installation. Its capture and
+ingest transactions own canonical knowledge changes; export alone never marks
+a claim accepted. Reuse requires matching workspace, settings, freshness and
+semantic purpose. Missing provenance is an unknown, not permission to guess.

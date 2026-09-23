@@ -29,6 +29,7 @@ Python 3.10+ · Windows, Linux, macOS · No runtime dependencies · MIT licensed
 | Request planning | `routes`, `route`, `estimate`, command previews | Local discovery and baseline estimates without credentials |
 | Endpoint discovery | `docs search`, `docs read` | Official documentation with a local offline cache |
 | Focused results | `--output`, `view`, `--select`, `--limit` | Complete saved JSON with concise, labelled display views |
+| Research memory | `python -m legends_dataforseo.evidence` | Verifiable evidence packages for compatible reuse and optional vault intake |
 | Saved task retrieval | `wait` / `wait_task()` | Opt-in GET polling with attempt and elapsed bounds |
 
 The transport preserves task IDs and original pending, empty, and failed task
@@ -38,7 +39,7 @@ No MCP server or particular agent runtime is required.
 ## Install
 
 ```sh
-python -m pip install "https://github.com/avalonreset/legends-dataforseo-kit/releases/download/v0.4.0/legends_dataforseo_kit-0.4.0-py3-none-any.whl"
+python -m pip install "https://github.com/avalonreset/legends-dataforseo-kit/releases/download/v0.5.0/legends_dataforseo_kit-0.5.0-py3-none-any.whl"
 legends-dataforseo --version
 legends-dataforseo doctor
 ```
@@ -113,6 +114,7 @@ in summaries; displayed lists are labelled when shortened. The Python transport
 still returns the untouched provider response. For saved queue IDs, `wait`
 offers bounded GET retrieval with no paid resubmission.
 
+[Research memory and vault handoff](docs/RESEARCH-MEMORY.md) ·
 [Complete workflow](docs/WORKFLOWS.md) · [Documentation discovery](docs/DISCOVERY.md) ·
 [Verification evidence](docs/VERIFICATION.md) · [Official tooling comparison](docs/UPSTREAM.md)
 
