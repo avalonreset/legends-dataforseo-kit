@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2 - 2026-09-25
+
+- Fix: package __version__ and the routes registry version join 0.1.2.
+  The 0.1.1 bump missed the in-package version strings, failing the
+  wheel smoke check.
+
 ## 0.1.1 - 2026-09-25
 
 - Docs: reworded pre-reset version references (0.3.x/0.4.0/0.5.0) to the
