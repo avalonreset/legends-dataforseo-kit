@@ -16,7 +16,13 @@ and resume queued tasks without submitting them again.
 Python 3.10+ · Windows, Linux, macOS · No runtime dependencies · MIT licensed
 
 [Quick start](#quick-start) · [Python API](docs/API.md) · [CLI guide](docs/CLI.md) ·
-[Agent setup](skills/legends-dataforseo-kit/SKILL.md) · [Releases](https://github.com/avalonreset/legends-dataforseo-kit/releases)
+[Agent setup](#agent-setup-via-cto-legends) · [Releases](https://github.com/avalonreset/legends-dataforseo-kit/releases)
+
+## Agent setup (via `cto-legends`)
+
+Part of the [CTO Legends](https://github.com/avalonreset/cto-legends) ecosystem. `cto-legends` is the only registered skill; this repo vendors a pinned copy at `skills/cto-legends/SKILL.md`.
+
+Install with `cto-legends install legends-dataforseo-kit`, then follow the module recipe the router loads. Do not register this module as its own skill.
 
 ## What you can build
 
@@ -39,7 +45,7 @@ No MCP server or particular agent runtime is required.
 ## Install
 
 ```sh
-python -m pip install "https://github.com/avalonreset/legends-dataforseo-kit/releases/download/v0.5.0/legends_dataforseo_kit-0.5.0-py3-none-any.whl"
+python -m pip install "https://github.com/avalonreset/legends-dataforseo-kit/releases/download/v0.1.0/legends_dataforseo_kit-0.1.0-py3-none-any.whl"
 legends-dataforseo --version
 legends-dataforseo doctor
 ```
@@ -186,7 +192,7 @@ python -m twine check dist/*
 ```
 
 CI tests Linux, Windows, and macOS without credentials or paid calls. Read
-[AGENTS.md](AGENTS.md) or [the portable skill](skills/legends-dataforseo-kit/SKILL.md)
+[AGENTS.md](AGENTS.md) or [the pinned router skill](skills/cto-legends/SKILL.md)
 for agent-assisted install and operation. Consumer integration recipes for
 [legends-geogrid](https://github.com/avalonreset/legends-geogrid) and
 [legends-github](https://github.com/avalonreset/legends-github) are in

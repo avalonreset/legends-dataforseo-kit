@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.0 - 2026-09-25
+
+- Router-native generation reset: one registered skill (`cto-legends`) with a pinned copy vendored at `skills/cto-legends/SKILL.md` (router commit 6975dcbf073e5eec7a30ce6a04a6975238c61158); per-module skill registration removed; version reset to 0.1.0 with history preserved.
+
 ## 0.5.0 - 2026-09-23
 
 - Ship the offline research-evidence module required by Legends Obsidian intake.
