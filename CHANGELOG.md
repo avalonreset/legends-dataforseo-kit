@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1 - 2026-09-25
+
+- Docs: reworded pre-reset version references (0.3.x/0.4.0/0.5.0) to the
+  0.1.x router-native baseline and renamed Legends Obsidian references to
+  legends-empire. No code changes.
+
 ## 0.1.0 - 2026-09-25
 
 - Router-native generation reset: one registered skill (`cto-legends`) with a pinned copy vendored at `skills/cto-legends/SKILL.md` (router commit 6975dcbf073e5eec7a30ce6a04a6975238c61158); per-module skill registration removed; version reset to 0.1.0 with history preserved.

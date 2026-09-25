@@ -1,4 +1,4 @@
-# Python contract - 0.5.x (compatible with 0.3.x and 0.4.x requests)
+# Python contract - 0.1.x router-native baseline (stable request signatures)
 
 Public import: `legends_dataforseo`. Package: `legends-dataforseo-kit`.
 `API_ROOT = "https://api.dataforseo.com/v3"`.
@@ -90,7 +90,7 @@ Offline helpers: `load_routes()`, `route_for(operation)`,
 
 ## Compatibility
 
-0.4.0 adds optional helpers without changing the 0.3.x request signatures or
+The baseline ships optional helpers on top of the stable request signatures and
 standard response format. Existing GeoGrid and GitHub callers need no changes.
 
 ```python
@@ -128,14 +128,14 @@ Documentation options: `cache_dir=None`, `offline=False`, `refresh=False`,
 `ttl=86400`, `timeout=20`. These helpers never load API credentials. Failures raise
 `DocumentationError`. [Discovery and caching](DISCOVERY.md).
 
-0.3.0 is the first public release, following private local prototypes. It keeps
+The 0.1.x router-native generation is the supported public baseline. It keeps
 the positional `api_request(path, payload)` transport and timeout/consumer/confirm
 keywords. Public defaults are single-account, all paid calls confirmed, logging
 off, and task statuses caller-owned. Private account failover, workstation
 installers, and PowerShell-specific wrappers are not part of the public API.
 Pin a release or full commit. Breaking changes will be documented and versioned.
 
-## Research evidence (0.5.0)
+## Research evidence
 
 `legends_dataforseo.evidence` provides offline `export`, `verify`, and
 `assess_reuse` helpers. The module CLI supports `export` and `verify`.

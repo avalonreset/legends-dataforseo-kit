@@ -1,6 +1,6 @@
 # Consumer integration
 
-For optional offline research memory and Legends Obsidian intake, see
+For optional offline research memory and legends-empire intake, see
 [Research memory handoff](RESEARCH-MEMORY.md). The local candidate preserves
 standalone operation; it does not change the transport or consumer pins.
 

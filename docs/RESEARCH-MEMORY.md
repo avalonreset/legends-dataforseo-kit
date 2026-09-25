@@ -1,8 +1,8 @@
-# Research memory handoff (0.5.0)
+# Research memory handoff
 
-Keep the modules independent. DataForSEO collects evidence; Legends Obsidian
+Keep the modules independent. DataForSEO collects evidence; legends-empire
 organizes durable knowledge; GeoGrid and other consumers interpret it. No Hub,
-Obsidian application, MCP or new runtime dependency is required for this export.
+vault application, MCP or new runtime dependency is required for this export.
 
 ## One package, multiple consumers
 
@@ -30,12 +30,12 @@ Empty result items may be genuine observations; interpret them by endpoint.
 Pending/error task statuses remain intact and do not become reusable findings.
 Reported costs are snapshots; do not sum repeated polling/export costs.
 
-## Legends Obsidian intake
+## legends-empire intake
 
 1. Select the user's vault explicitly. Never use a product checkout as a vault.
 2. Verify and review the bounded package inventory before staging it under
    `inbox/research/PACKAGE_ID`. Do not overwrite an existing intake.
-3. Use Legends Obsidian's existing capture plan/apply and wiki-ingest recipe.
+3. Use legends-empire's existing capture plan/apply and wiki-ingest recipe.
    Capture raw files immutably, preserve hashes, and cite vault-relative sources.
 4. Merge findings through its transaction protocol, linking the appropriate
    business dossier and source/claim ledgers. An intake is not a canonical merge.

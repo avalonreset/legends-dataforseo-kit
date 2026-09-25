@@ -44,7 +44,7 @@ legends-dataforseo-kit @ https://github.com/avalonreset/legends-dataforseo-kit/a
 ```
 
 Replace the placeholder with the verified 40-character commit from the release
-notes. Existing 0.3.0 commit pins remain supported by the same request contract.
+notes. Existing commit pins remain supported by the same request contract.
 Source installation may download build tools; these are not runtime dependencies.
 
 To work on the code, clone the repository and run

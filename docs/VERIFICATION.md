@@ -1,6 +1,6 @@
-# 0.5.0 verification
+# Release verification
 
-Checked 2026-09-21. These observations apply to this release candidate and the
+Checked 2026-09-21. These observations apply to the covered release and the
 listed workflows, not every DataForSEO product or an unlimited production load.
 
 ## Automated checks
