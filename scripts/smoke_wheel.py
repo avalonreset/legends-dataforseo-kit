@@ -10,7 +10,7 @@ from pathlib import Path
 root = Path(__file__).resolve().parents[1]
 wheel, = (root / "dist").glob("*.whl")
 with tempfile.TemporaryDirectory() as directory:
-    target = Path(directory)
+    target = Path(directory).resolve()
     venv.EnvBuilder(with_pip=True).create(target / "venv")
     python = target / "venv" / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
     subprocess.run([str(python), "-m", "pip", "install", "--no-deps", str(wheel)], check=True)

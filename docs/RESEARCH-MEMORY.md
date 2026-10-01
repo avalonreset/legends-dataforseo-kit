@@ -96,6 +96,10 @@ contract produces a new identity. Packages move between directories without
 changing their identity, because package links are relative and identity excludes
 storage paths. Interrupted exports fail verification; no automatic repair,
 deletion or resubmission occurs. Symlinked package files are refused.
+Linked ancestors and directory junctions are refused too. Supply the canonical
+physical path when your platform exposes a directory through an alias (for
+example macOS `/var` versus `/private/var`). Resolve your deliberately selected
+workspace before export; verification does not silently erase linked ancestry.
 
 Reuse requires exact client, endpoint and request match, a caller-selected
 freshness ceiling, successful task statuses and present results. Future/stale

@@ -14,7 +14,7 @@ def run(packages=200, response_kib=64, large_mib=8):
     if not 1 <= packages <= 2000 or not 1 <= response_kib <= 1024 or not 1 <= large_mib <= 64:
         raise ValueError("bounded synthetic benchmark sizes required")
     with tempfile.TemporaryDirectory(prefix="legends-evidence-benchmark-") as temporary:
-        root = Path(temporary)
+        root = Path(temporary).resolve()
         source = root / "source.json"
         bank = root / "bank"
         source.write_bytes(json.dumps({"status_code": 20000, "cost": 0, "tasks": [{"id": "synthetic", "status_code": 20000, "cost": 0, "result": [{"items": [{"text": "x" * (response_kib * 1024)}]}]}]}).encode())
