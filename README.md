@@ -1,14 +1,14 @@
 <a name="banner"></a>
 <a name="legends-dataforseo-kit"></a>
 
-# ![legends-dataforseo-kit](assets/banner.webp)
+# legends-dataforseo
 
 [![release](https://img.shields.io/github/v/release/avalonreset/legends-dataforseo-kit?label=release&sort=date&style=flat-square&labelColor=000000&color=ff0000)](https://github.com/avalonreset/legends-dataforseo-kit/releases/latest)
 [![checks](https://img.shields.io/github/actions/workflow/status/avalonreset/legends-dataforseo-kit/ci.yml?branch=main&label=checks&style=flat-square&labelColor=000000)](https://github.com/avalonreset/legends-dataforseo-kit/actions/workflows/ci.yml)
 [![license](https://img.shields.io/github/license/avalonreset/legends-dataforseo-kit?label=license&style=flat-square&labelColor=000000&color=666666)](LICENSE)
 
 **Search results, Google Maps rankings, and keyword research from Python or your terminal.**
-legends-dataforseo-kit connects scripts, applications, and coding agents to
+legends-dataforseo connects scripts, applications, and coding agents to
 DataForSEO API v3 with offline request previews and explicit paid execution.
 Find official endpoint docs, save complete responses, inspect focused results,
 and resume queued tasks without submitting them again.
@@ -21,6 +21,8 @@ Python 3.10+ · Windows, Linux, macOS · No runtime dependencies · MIT licensed
 ## Agent setup (via `cto-legends`)
 
 Part of the [CTO Legends](https://github.com/avalonreset/cto-legends) ecosystem. `cto-legends` is the only registered skill; this repo vendors a pinned copy at `skills/cto-legends/SKILL.md`.
+
+The product is `legends-dataforseo`; the distribution, repository and catalog ID remain `legends-dataforseo-kit` for compatibility.
 
 Install with `cto-legends install legends-dataforseo-kit`, then follow the module recipe the router loads. Do not register this module as its own skill.
 
@@ -35,7 +37,7 @@ Install with `cto-legends install legends-dataforseo-kit`, then follow the modul
 | Request planning | `routes`, `route`, `estimate`, command previews | Local discovery and baseline estimates without credentials |
 | Endpoint discovery | `docs search`, `docs read` | Official documentation with a local offline cache |
 | Focused results | `--output`, `view`, `--select`, `--limit` | Complete saved JSON with concise, labelled display views |
-| Research memory | `python -m legends_dataforseo.evidence` | Verifiable evidence packages for compatible reuse and optional vault intake |
+| Research memory | `legends-dataforseo evidence` | Offline export, inventory, search, verified views, compatible reuse and optional vault intake |
 | Saved task retrieval | `wait` / `wait_task()` | Opt-in GET polling with attempt and elapsed bounds |
 
 The transport preserves task IDs and original pending, empty, and failed task
@@ -45,7 +47,7 @@ No MCP server or particular agent runtime is required.
 ## Install
 
 ```sh
-python -m pip install "https://github.com/avalonreset/legends-dataforseo-kit/releases/download/v0.1.0/legends_dataforseo_kit-0.1.0-py3-none-any.whl"
+python -m pip install "https://github.com/avalonreset/legends-dataforseo-kit/releases/download/v0.1.3/legends_dataforseo_kit-0.1.3-py3-none-any.whl"
 legends-dataforseo --version
 legends-dataforseo doctor
 ```

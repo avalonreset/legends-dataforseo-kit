@@ -32,10 +32,15 @@ def _execution_flags(parser):
 
 
 def main(argv=None) -> int:
+    argv = list(sys.argv[1:] if argv is None else argv)
+    if argv[:1] == ["evidence"]:
+        from .evidence import main as evidence_main
+        return evidence_main(argv[1:])
     parser = argparse.ArgumentParser(prog="legends-dataforseo", description=__doc__)
     parser.add_argument("--version", action="version", version=__version__)
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("routes", help="Offline operation registry")
+    sub.add_parser("evidence", help="Offline export, inventory, verify, reuse, and view")
     route = sub.add_parser("route")
     route.add_argument("operation")
     estimate = sub.add_parser("estimate", help="Offline baseline estimate")

@@ -28,4 +28,9 @@ with tempfile.TemporaryDirectory() as directory:
     package = subprocess.check_output([str(python), "-I", "-m", "legends_dataforseo.evidence", "export", str(payload), str(target / "evidence"), "--workspace", "synthetic-client", "--endpoint", "/serp/google/organic/live/advanced", "--request-file", str(request), "--observed-at", "2026-09-23T00:00:00Z"], cwd=target, text=True).strip()
     subprocess.run([str(python), "-I", "-m", "legends_dataforseo.evidence", "verify", package], cwd=target, check=True)
     subprocess.run([str(python), "-I", "-c", "import sys; from legends_dataforseo.evidence import assess_reuse; assert not assess_reuse(sys.argv[1], workspace='different-client', endpoint='/serp/google/organic/live/advanced', request=[{'keyword':'synthetic'}], max_age_hours=24)['eligible']", package], cwd=target, check=True)
+    subprocess.run([str(python), "-I", "-m", "legends_dataforseo", "evidence", "inventory", str(target / "evidence"), "--workspace", "synthetic-client"], cwd=target, check=True, stdout=subprocess.DEVNULL)
+    subprocess.run([str(python), "-I", "-m", "legends_dataforseo", "evidence", "find", str(target / "evidence"), "--query", "synthetic"], cwd=target, check=True, stdout=subprocess.DEVNULL)
+    subprocess.run([str(python), "-I", "-m", "legends_dataforseo", "evidence", "view", package, "--summary"], cwd=target, check=True, stdout=subprocess.DEVNULL)
+    completed = subprocess.run([str(python), "-I", "-m", "legends_dataforseo", "evidence", "reuse", package, "--workspace", "synthetic-client", "--endpoint", "/serp/google/organic/live/advanced", "--request-file", str(request), "--max-age-hours", "24"], cwd=target, stdout=subprocess.DEVNULL)
+    assert completed.returncode == 2  # Pending/stale synthetic evidence is never promoted.
 print("clean wheel smoke PASS")

@@ -141,3 +141,19 @@ Pin a release or full commit. Breaking changes will be documented and versioned.
 `assess_reuse` helpers. The module CLI supports `export` and `verify`.
 See [research memory](RESEARCH-MEMORY.md) for the complete handoff contract.
 No provider calls, implicit vault writes, or request API changes are introduced.
+
+
+Evidence navigation additions in 0.1.3:
+
+```python
+inventory(bank, *, workspace=None, endpoint=None, query=None, limit=50, offset=0)
+view(package, *, summary=False, select=None, limit=None)
+```
+
+`inventory` verifies manifest identity only and never reads response files or
+intake notes. Returned rows explicitly say `response_integrity="not_checked"`.
+Search is local substring matching over manifest metadata, including request
+settings. It is not semantic search. `view` verifies the complete package first;
+its default includes the full response, with optional existing display views.
+New exports hash README bytes through `note_sha256`; old exports still verify
+with `note_integrity="not_recorded"`. See the research-memory guide for limits.

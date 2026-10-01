@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.3 - 2026-10-01
+
+- Add offline evidence inventory/find, reuse assessment CLI and integrity-checked views through `legends-dataforseo evidence` and the existing module entry point.
+- Bind new evidence intake notes with SHA-256 while keeping existing v1 packages readable with explicit unrecorded-note integrity.
+- Preserve complete provider data and explicit client scope; list manifest metadata without reading raw responses. No implicit provider calls, vault promotion or default query truncation.
+- Document portable client workspaces, explicit display limits and measured synthetic navigation checks.
+
+
 ## 0.1.2 - 2026-09-25
 
 - Fix: package __version__ and the routes registry version join 0.1.2.

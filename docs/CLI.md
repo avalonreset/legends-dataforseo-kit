@@ -75,3 +75,13 @@ Each subcommand's `--help` lists the options it accepts. Baseline estimates can
 become outdated. Standard queue pricing needs a separately reviewed estimate.
 
 [First live request](FIRST-USE.md) · [Credential setup](INSTALL.md#credentials) · [Python API](API.md)
+
+## Offline evidence bank
+
+`legends-dataforseo evidence --help` exposes export, verify, inventory, find,
+reuse and view. `python -m legends_dataforseo evidence` and the older
+`python -m legends_dataforseo.evidence` support the same commands.
+Evidence reuse returns exit 2 when ineligible with explicit reasons; it never
+submits or refreshes a request. Inventory errors are reported per package,
+without turning incomplete metadata into verified response evidence.
+See [the complete client-workspace workflow](RESEARCH-MEMORY.md).
