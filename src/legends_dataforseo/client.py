@@ -167,7 +167,8 @@ def ledger_path() -> Path:
         return Path(configured).expanduser()
     state = Path(os.environ.get("LOCALAPPDATA") or os.environ.get("XDG_STATE_HOME")
                  or (Path.home() / ".local" / "state"))
-    return state / "legends-dataforseo-kit" / "cost-ledger.jsonl"
+    legacy = state / "legends-dataforseo-kit" / "cost-ledger.jsonl"
+    return legacy if legacy.exists() else state / "legends-dataforseo" / "cost-ledger.jsonl"
 
 
 def _append_ledger(path: str, result: dict[str, Any], consumer: str) -> None:
@@ -238,7 +239,7 @@ def api_request(
     request = Request(API_ROOT + normalized, data=encoded, method=verb,
                       headers={"Authorization": "Basic " + authorization,
                                "Content-Type": "application/json",
-                               "User-Agent": "legends-dataforseo-kit/" + __version__})
+                               "User-Agent": "legends-dataforseo/" + __version__})
     try:
         with _open(request, timeout) as response:
             result = json.loads(response.read().decode("utf-8"))

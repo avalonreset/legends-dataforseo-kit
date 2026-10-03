@@ -22,7 +22,7 @@ and [the reviewed package manifest](https://github.com/dataforseo/mcp-server-typ
 
 ## What this kit provides
 
-| Capability | legends-dataforseo-kit |
+| Capability | legends-dataforseo |
 | --- | --- |
 | Runtime and embedding | Python 3.10+, no runtime dependencies, Python functions and CLI |
 | Documentation | Official index discovery, local index search, Markdown reads, explicit offline cache |

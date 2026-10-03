@@ -9,7 +9,7 @@ Windows PowerShell:
 
 ```powershell
 python -m venv .venv
-.venv\Scripts\python.exe -m pip install "https://github.com/avalonreset/legends-dataforseo-kit/releases/download/v0.1.3/legends_dataforseo_kit-0.1.3-py3-none-any.whl"
+.venv\Scripts\python.exe -m pip install "https://github.com/avalonreset/legends-dataforseo/releases/download/v0.1.4/legends_dataforseo-0.1.4-py3-none-any.whl"
 .venv\Scripts\python.exe -m legends_dataforseo doctor
 ```
 
@@ -17,7 +17,7 @@ macOS or Linux:
 
 ```sh
 python3 -m venv .venv
-.venv/bin/python -m pip install "https://github.com/avalonreset/legends-dataforseo-kit/releases/download/v0.1.3/legends_dataforseo_kit-0.1.3-py3-none-any.whl"
+.venv/bin/python -m pip install "https://github.com/avalonreset/legends-dataforseo/releases/download/v0.1.4/legends_dataforseo-0.1.4-py3-none-any.whl"
 .venv/bin/python -m legends_dataforseo doctor
 ```
 
@@ -27,20 +27,20 @@ In an activated environment, `legends-dataforseo` and
 
 ## Source installs and dependency pins
 
-The [release page](https://github.com/avalonreset/legends-dataforseo-kit/releases/latest)
+The [release page](https://github.com/avalonreset/legends-dataforseo/releases/latest)
 contains a wheel, source distribution, and SHA-256 checksums. GitHub also supplies
 ZIP and tar archives of the tagged repository. A source ZIP can be installed
 directly with pip; Git is not needed:
 
 ```sh
-python -m pip install "https://github.com/avalonreset/legends-dataforseo-kit/archive/refs/tags/v0.1.3.zip"
+python -m pip install "https://github.com/avalonreset/legends-dataforseo/archive/refs/tags/v0.1.4.zip"
 ```
 
 For reproducible consumer dependencies, use the release's full commit in a
 requirements file:
 
 ```text
-legends-dataforseo-kit @ https://github.com/avalonreset/legends-dataforseo-kit/archive/<FULL_RELEASE_COMMIT>.zip
+legends-dataforseo @ https://github.com/avalonreset/legends-dataforseo/archive/<FULL_RELEASE_COMMIT>.zip
 ```
 
 Replace the placeholder with the verified 40-character commit from the release
@@ -56,12 +56,12 @@ Download the wheel and `SHA256SUMS.txt` from the same release. Compare the wheel
 SHA-256 hash with its exact filename in the checksums file:
 
 ```powershell
-Get-FileHash -Algorithm SHA256 .\legends_dataforseo_kit-0.1.3-py3-none-any.whl
+Get-FileHash -Algorithm SHA256 .\legends_dataforseo-0.1.4-py3-none-any.whl
 ```
 
 ```sh
-sha256sum legends_dataforseo_kit-0.1.3-py3-none-any.whl
-# macOS alternative: shasum -a 256 legends_dataforseo_kit-0.1.3-py3-none-any.whl
+sha256sum legends_dataforseo-0.1.4-py3-none-any.whl
+# macOS alternative: shasum -a 256 legends_dataforseo-0.1.4-py3-none-any.whl
 ```
 
 Then install that local file with `python -m pip install ./<wheel-filename>`.
@@ -106,5 +106,12 @@ with [first use](FIRST-USE.md).
 | Pending or empty results | Inspect each task's status and saved ID; see [API.md](API.md). |
 
 To upgrade, install the chosen release wheel with `python -m pip install --upgrade <wheel-url>`.
-To uninstall, run `python -m pip uninstall legends-dataforseo-kit`. Uninstalling
+To uninstall, run `python -m pip uninstall legends-dataforseo`. Uninstalling
 the package does not clear credentials or private files you saved separately.
+
+## Upgrading from the former distribution name
+
+In the same virtual environment, uninstall `legends-dataforseo-kit` before
+installing the new wheel above. Both distributions provide the same import and
+CLI; keeping both installed can make a later uninstall remove shared files.
+Existing documentation caches and cost ledgers are reused in place.

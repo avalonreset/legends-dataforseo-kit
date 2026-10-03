@@ -3,8 +3,8 @@ requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "legends-dataforseo-kit"
-version = "0.1.3"
+name = "legends-dataforseo"
+version = "0.1.4"
 description = "Agent-neutral Python client and CLI for DataForSEO API v3"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -24,11 +24,11 @@ classifiers = [
 ]
 
 [project.urls]
-Repository = "https://github.com/avalonreset/legends-dataforseo-kit"
-Issues = "https://github.com/avalonreset/legends-dataforseo-kit/issues"
-Documentation = "https://github.com/avalonreset/legends-dataforseo-kit/tree/main/docs"
-Changelog = "https://github.com/avalonreset/legends-dataforseo-kit/blob/main/CHANGELOG.md"
-Releases = "https://github.com/avalonreset/legends-dataforseo-kit/releases"
+Repository = "https://github.com/avalonreset/legends-dataforseo"
+Issues = "https://github.com/avalonreset/legends-dataforseo/issues"
+Documentation = "https://github.com/avalonreset/legends-dataforseo/tree/main/docs"
+Changelog = "https://github.com/avalonreset/legends-dataforseo/blob/main/CHANGELOG.md"
+Releases = "https://github.com/avalonreset/legends-dataforseo/releases"
 
 [project.scripts]
 legends-dataforseo = "legends_dataforseo.cli:main"

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.4 - 2026-10-03
+
+- Rename the repository, distribution and catalog identity to `legends-dataforseo`.
+- Refresh install links, badges, package metadata and evidence producer names.
+- Keep the Python import and CLI unchanged. Existing cache and ledger locations
+  are reused when present; new installations use the canonical name.
+
+
 ## 0.1.3 - 2026-10-01
 
 - Add offline evidence inventory/find, reuse assessment CLI and integrity-checked views through `legends-dataforseo evidence` and the existing module entry point.

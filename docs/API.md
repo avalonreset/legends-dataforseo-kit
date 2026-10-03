@@ -1,6 +1,6 @@
 # Python contract - 0.1.x router-native baseline (stable request signatures)
 
-Public import: `legends_dataforseo`. Package: `legends-dataforseo-kit`.
+Public import: `legends_dataforseo`. Package: `legends-dataforseo`.
 `API_ROOT = "https://api.dataforseo.com/v3"`.
 
 ```python

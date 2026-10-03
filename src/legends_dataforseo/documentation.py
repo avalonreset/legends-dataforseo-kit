@@ -57,7 +57,9 @@ def _url(path):
 
 def _default_cache():
     base = os.environ.get("LOCALAPPDATA") if os.name == "nt" else os.environ.get("XDG_CACHE_HOME")
-    return (Path(base) if base else Path.home() / ".cache") / "legends-dataforseo-kit" / "docs"
+    root = Path(base) if base else Path.home() / ".cache"
+    legacy = root / "legends-dataforseo-kit" / "docs"
+    return legacy if legacy.exists() else root / "legends-dataforseo" / "docs"
 
 
 def _number(value, name, *, positive=False):
@@ -94,7 +96,7 @@ def _document(url, *, cache_dir=None, offline=False, refresh=False, ttl=86400, t
                     "cached": True, "stale": stale}
     if offline:
         raise DocumentationError("No valid cached documentation is available offline")
-    request = Request(url, headers={"Accept": "text/plain, text/markdown", "User-Agent": "legends-dataforseo-kit docs"})
+    request = Request(url, headers={"Accept": "text/plain, text/markdown", "User-Agent": "legends-dataforseo docs"})
     try:
         with _open(request, timeout) as response:
             if response.geturl() != url:

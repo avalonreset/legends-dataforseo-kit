@@ -62,7 +62,7 @@ def _date(value):
 
 
 def export(response, destination, *, workspace, endpoint, request, observed_at,
-           producer="legends-dataforseo-kit"):
+           producer="legends-dataforseo"):
     """Bank one standard response with explicit scope; never infer collection time."""
     if not isinstance(workspace, str) or not workspace.strip():
         raise ValueError("explicit client/workspace identity required")

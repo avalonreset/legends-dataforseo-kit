@@ -63,7 +63,7 @@ def test_ai_path_preserves_original_envelope_and_dynamic_user_agent(monkeypatch)
     monkeypatch.setattr(client, "_open", opened)
     assert client.api_request("/v3/serp/google/organic/live/advanced.ai", [{}], credentials=CREDS, confirm=True) == raw
     assert calls[0].full_url.endswith("advanced.ai")
-    assert calls[0].get_header("User-agent") == "legends-dataforseo-kit/" + __version__
+    assert calls[0].get_header("User-agent") == "legends-dataforseo/" + __version__
 
 
 def test_ai_paths_cannot_bypass_cost_and_task_count_guards():

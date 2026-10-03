@@ -25,7 +25,7 @@ def _open(request, timeout):
 
 
 def check_upstream():
-    request = Request(SOURCE_URL, headers={"Accept": "application/json", "User-Agent": "legends-dataforseo-kit upstream-check"})
+    request = Request(SOURCE_URL, headers={"Accept": "application/json", "User-Agent": "legends-dataforseo upstream-check"})
     try:
         with _open(request, 20) as response:
             if response.geturl() != SOURCE_URL:

@@ -1,11 +1,11 @@
 <a name="banner"></a>
-<a name="legends-dataforseo-kit"></a>
+<a name="legends-dataforseo"></a>
 
 # legends-dataforseo
 
-[![release](https://img.shields.io/github/v/release/avalonreset/legends-dataforseo-kit?label=release&sort=date&style=flat-square&labelColor=000000&color=ff0000)](https://github.com/avalonreset/legends-dataforseo-kit/releases/latest)
-[![checks](https://img.shields.io/github/actions/workflow/status/avalonreset/legends-dataforseo-kit/ci.yml?branch=main&label=checks&style=flat-square&labelColor=000000)](https://github.com/avalonreset/legends-dataforseo-kit/actions/workflows/ci.yml)
-[![license](https://img.shields.io/github/license/avalonreset/legends-dataforseo-kit?label=license&style=flat-square&labelColor=000000&color=666666)](LICENSE)
+[![release](https://img.shields.io/github/v/release/avalonreset/legends-dataforseo?label=release&sort=date&style=flat-square&labelColor=000000&color=ff0000)](https://github.com/avalonreset/legends-dataforseo/releases/latest)
+[![checks](https://img.shields.io/github/actions/workflow/status/avalonreset/legends-dataforseo/ci.yml?branch=main&label=checks&style=flat-square&labelColor=000000)](https://github.com/avalonreset/legends-dataforseo/actions/workflows/ci.yml)
+[![license](https://img.shields.io/github/license/avalonreset/legends-dataforseo?label=license&style=flat-square&labelColor=000000&color=666666)](LICENSE)
 
 **Search results, Google Maps rankings, and keyword research from Python or your terminal.**
 legends-dataforseo connects scripts, applications, and coding agents to
@@ -16,15 +16,16 @@ and resume queued tasks without submitting them again.
 Python 3.10+ · Windows, Linux, macOS · No runtime dependencies · MIT licensed
 
 [Quick start](#quick-start) · [Python API](docs/API.md) · [CLI guide](docs/CLI.md) ·
-[Agent setup](#agent-setup-via-cto-legends) · [Releases](https://github.com/avalonreset/legends-dataforseo-kit/releases)
+[Agent setup](#agent-setup-via-cto-legends) · [Releases](https://github.com/avalonreset/legends-dataforseo/releases)
 
 ## Agent setup (via `cto-legends`)
 
 Part of the [CTO Legends](https://github.com/avalonreset/cto-legends) ecosystem. `cto-legends` is the only registered skill; this repo vendors a pinned copy at `skills/cto-legends/SKILL.md`.
 
-The product is `legends-dataforseo`; the distribution, repository and catalog ID remain `legends-dataforseo-kit` for compatibility.
+The product, repository, Python distribution and catalog ID are `legends-dataforseo`.
+The former catalog name remains a compatibility alias for existing commands.
 
-Install with `cto-legends install legends-dataforseo-kit`, then follow the module recipe the router loads. Do not register this module as its own skill.
+Install with `cto-legends install legends-dataforseo`, then follow the module recipe the router loads. Do not register this module as its own skill.
 
 ## What you can build
 
@@ -47,7 +48,7 @@ No MCP server or particular agent runtime is required.
 ## Install
 
 ```sh
-python -m pip install "https://github.com/avalonreset/legends-dataforseo-kit/releases/download/v0.1.3/legends_dataforseo_kit-0.1.3-py3-none-any.whl"
+python -m pip install "https://github.com/avalonreset/legends-dataforseo/releases/download/v0.1.4/legends_dataforseo-0.1.4-py3-none-any.whl"
 legends-dataforseo --version
 legends-dataforseo doctor
 ```
@@ -208,7 +209,7 @@ agents; no separate model subscription is required by the kit.
 
 ## Support and contributions
 
-[Report a bug or request a feature](https://github.com/avalonreset/legends-dataforseo-kit/issues/new/choose).
+[Report a bug or request a feature](https://github.com/avalonreset/legends-dataforseo/issues/new/choose).
 Include the version, a minimal example, and sanitized status codes.
 [CONTRIBUTING.md](CONTRIBUTING.md) explains local checks and the transport rules
 that integrations rely on. For credential leaks or vulnerabilities, use

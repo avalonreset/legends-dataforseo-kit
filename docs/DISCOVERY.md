@@ -39,9 +39,9 @@ them `stale: true`; it fails clearly if no valid cached copy exists. Refresh a
 reference with `--refresh`. Refresh and offline cannot be combined. A failed
 online refresh does not silently return old content.
 
-By default the cache is under `LOCALAPPDATA/legends-dataforseo-kit/docs` on
-Windows, `XDG_CACHE_HOME/legends-dataforseo-kit/docs` when configured on other
-systems, or `~/.cache/legends-dataforseo-kit/docs` otherwise. It stores official
+By default the cache is under `LOCALAPPDATA/legends-dataforseo/docs` on
+Windows, `XDG_CACHE_HOME/legends-dataforseo/docs` when configured on other
+systems, or `~/.cache/legends-dataforseo/docs` otherwise. It stores official
 reference documents, not request bodies, account data, or search queries. A
 cache write failure returns the fetched document with `cache_warning`.
 

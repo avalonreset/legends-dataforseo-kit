@@ -30,7 +30,7 @@ jobs:
 
       - name: Contract checks (no external deps)
         env:
-          MODULE_ID: "legends-dataforseo-kit"
+          MODULE_ID: "legends-dataforseo"
           REF_NAME: ${{ github.ref_name }}
         run: |
           python3 - <<'EOF'
